@@ -4,29 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            background-color: lightgray;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: darkblue;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px black;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            color: darkgreen;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: darkblue;
+            color: white;
+            cursor: pointer;
+        }
+
+        p {
+            margin-top: 10px;
+            color: darkred;
+        }
+    </style>
 </head>
 <body>
     <h1>Create account</h1>
     <form action="">
         <label for="fname">First name:</label>
-        <input type="text" id="fname" name="fname" required ="required"><br>
+        <input type="text" id="fname" name="fname" required="required"><br>
+
         <label for="lname">Last name:</label>
-        <input type="text" id="lname" name="lname" required ="required"><br>
+        <input type="text" id="lname" name="lnamve" required="required"><br>
+
         <label for="email">Email:</label>
-        <input type="email" name="email" id="email" placeholder="example@mail.com" required ="required"><br>
+        <input type="email" name="email" id="email" placeholder="example@mail.com" required="required"><br>
+
         <label for="pwd">Password:</label>
-        <input type="password" name="pwd" id="pwd" required ="required"><br>
+        <input type="password" name="pwd" id="pwd" required="required"><br>
+
         <label for="dob">Date of birth:</label>
-        <input type="date" name="dob" id="dob" required = "required"><br>
+        <input type="date" name="dob" id="dob" required="required"><br>
+
         <label for="gender">Gender:</label><br>
+        <label for="male">Male</label>
         <input type="radio" name="gender" id="male" value="Male">
-        <label for="male ">Male</label><br>
+
+        <label for="female">Female</label>
         <input type="radio" name="gender" id="female" value="Female">
-        <label for="female">Female</label><br>
+
+        <label for="pns">Prefer not to say</label>
         <input type="radio" name="gender" id="pns" value="Prefer not to say">
-        <label for="pns">Prefer not to say</label><br>
-        <a href="index.html"><input type="submit" value="Register"></a>
-        <p>Already have an account?<a href = "index.html">Sign in</a></p>
+
+        <input type="submit" value="Register">
+        <p>Already have an account? <a href="index.html">Sign in</a></p>
     </form>
 </body>
 </html>
