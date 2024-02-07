@@ -1,100 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page</title>
     <style>
-        body {
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            background-color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
+      body {
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        background-color: #f2f2f2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+      }
 
-        .login-container {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 0 10px black;
-            overflow: hidden;
-            width: 300px;
-            text-align: center;
-        }
+      .login-container {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        width: 320px;
+        text-align: center;
+      }
 
-        h1 {
-            color: black;
-            margin: 20px 0;
-        }
+      h1 {
+        color: teal;
+        margin-top: 20px;
+      }
 
-        form {
-            padding: 20px;
-        }
+      hr {
+        border: none;
+        border-top: 2px solid teal;
+        margin: 30px 0;
+      }
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: green;
-        }
+      form {
+        padding: 20px;
+      }
 
-        input {
-            width: 100%;
-            padding: 10px;
-            box-sizing: border-box;
-            border: 1px solid white;
-            border-radius: 4px;
-            margin-bottom: 12px;
-            transition: border-color 0.3s;
-        }
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: teal;
+      }
 
-        input:focus {
-            border-color: blueviolet;
-        }
+      input {
+        width: calc(100% - 20px);
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 12px;
+        transition: border-color 0.3s;
+      }
 
-        a {
-            text-decoration: none;
-            color: black;
-        }
+      input:focus {
+        border-color: #6c5ce7;
+        outline: none;
+      }
 
-        a:hover {
-            text-decoration: underline;
-        }
+      a {
+        text-decoration: none;
+        color: #6c5ce7;
+        transition: color 0.3s;
+      }
 
-        input[type="button"] {
-            background-color: slateblue;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+      a:hover {
+        color: #4a3aa9;
+      }
 
-        input[type="button"]:hover {
-            background-color: blue;
-        }
+      input[type="button"] {
+        background-color: #6c5ce7;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
 
-        p {
-            margin-top: 20px;
-            color: black;
-        }
+      input[type="button"]:hover {
+        background-color: #4a3aa9;
+      }
+
+      p {
+        margin-top: 20px;
+        color: teal;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="login-container">
-        <h1>Sign in to continue</h1>
-        <form action="">
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" required><br>
-            <label for="pwd">Password:</label>
-            <input type="password" name="pwd" id="pwd" required><br>
-            <a href="Forgotpassword.html">Forgot your password?</a><br>
-            <br><input type="button" value="Sign In"><br>
-            <p>New user?</p>
-            <a href="registration.html"><input type="button" value="Create Account"></a>
-        </form>
+      <h1>Sign in to continue</h1>
+      <hr />
+      <form action="">
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required /><br />
+        <label for="pwd">Password:</label>
+        <input type="password" name="pwd" id="pwd" required /><br />
+        <a href="Forgotpassword.html">Forgot your password?</a><br />
+        <br /><input type="button" value="Sign In" /><br />
+        <p>New user?</p>
+        <a href="registration.html"
+          ><input type="button" value="Create Account"
+        /></a>
+      </form>
     </div>
-</body>
+  </body>
 </html>

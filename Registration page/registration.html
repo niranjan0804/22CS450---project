@@ -1,85 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        body {
-            background-color: lightgray;
-            font-family: Arial, sans-serif;
-        }
+      body {
+        background-color: lightgray;
+        font-family: Arial, sans-serif;
+      }
 
-        h1 {
-            color: darkblue;
-        }
+      h1 {
+        color: darkblue;
+        text-align: center;
+      }
 
-        form {
-            max-width: 400px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 0 10px black;
-        }
+      form {
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 0 10px black;
+      }
 
-        label {
-            margin-top: 10px;
-            color: darkgreen;
-        }
+      label {
+        margin-top: 10px;
+      }
 
-        input[type="email"],input[type="date"],input[type="password"],input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
-         
-        input[type="submit"] {
-            background-color: darkblue;
-            color: white;
-            cursor: pointer;
-        }
+      input[type="email"],
+      input[type="date"],
+      input[type="password"],
+      input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+      }
 
-        p {
-            margin-top: 10px;
-            color: darkred;
-        }
+      input[type="submit"] {
+        background-color: darkblue;
+        color: white;
+        cursor: pointer;
+      }
+
+      p {
+        margin-top: 10px;
+        color: darkred;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Create account</h1>
-    <form action="">
-        <label for="fname">First name:</label>
-        <input type="text" id="fname" name="fname" required="required"><br>
+    <form action="" id="registrationForm">
+      <label for="fname">First name:</label>
+      <input type="text" id="fname" name="fname" required="required" /><br />
 
-        <label for="lname">Last name:</label>
-        <input type="text" id="lname" name="lnamve" required="required"><br>
+      <label for="lname">Last name:</label>
+      <input type="text" id="lname" name="lname" required="required" /><br />
 
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" placeholder="example@mail.com" required="required"><br>
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="example@mail.com"
+        required="required"
+      /><br />
+      <p id="emailError"></p>
 
-        <label for="pwd">Password:</label>
-        <input type="password" name="pwd" id="pwd" required="required"><br>
+      <label for="pwd">Password:</label>
+      <input type="password" name="pwd" id="pwd" required="required" /><br />
 
-        <label for="pwd">Confirm Password:</label>
-        <input type="password" name="cpwd" id="cpwd" required="required"><br>
+      <label for="cpwd">Confirm Password:</label>
+      <input type="password" name="cpwd" id="cpwd" required="required" /><br />
+      <p id="passwordError"></p>
 
-        <label for="dob">Date of birth:</label>
-        <input type="date" name="dob" id="dob" required="required"><br>
+      <label for="dob">Date of birth:</label>
+      <input type="date" name="dob" id="dob" required="required" /><br />
 
-        <label for="gender">Gender:</label><br>
-        <input type="radio" name="gender" id="male" value="Male">
-        <label for="male">Male</label><br>
+      <label for="gender">Gender:</label><br />
+      <input type="radio" name="gender" id="male" value="Male" />
+      <label for="male">Male</label><br />
 
-        <input type="radio" name="gender" id="female" value="Female">
-        <label for="female">Female</label><br>
-        <input type="radio" name="gender" id="pns" value="Prefer not to say">
-        <label for="pns">Prefer not to say</label><br><br>
+      <input type="radio" name="gender" id="female" value="Female" />
+      <label for="female">Female</label><br />
+      <input type="radio" name="gender" id="pns" value="Prefer not to say" />
+      <label for="pns">Prefer not to say</label><br /><br />
 
-        <input type="submit" value="Register">
-        <p>Already have an account? <a href="index.html">Sign in</a></p>
+      <input type="submit" value="Register" />
+      <p>Already have an account? <a href="index.html">Sign in</a></p>
     </form>
-</body>
+
+    <script>
+      const form = document.getElementById("registrationForm");
+      const passwordInput = document.getElementById("pwd");
+      const confirmPasswordInput = document.getElementById("cpwd");
+      const passwordError = document.getElementById("passwordError");
+      const emailInput = document.getElementById("email");
+      const firstNameInput = document.getElementById("fname");
+      const lastNameInput = document.getElementById("lname");
+      const dobInput = document.getElementById("dob");
+      const emailError = document.getElementById("emailError");
+
+      form.addEventListener("submit", function (event) {
+        let isValid = true;
+
+        if (
+          passwordInput.value !== confirmPasswordInput.value ||
+          passwordInput.value.length < 8 ||
+          !/[!@#$%^&*(),.?":{}|<>]/.test(passwordInput.value)
+        ) {
+          passwordError.textContent =
+            "Password must match and be 8 or more characters with at least one special character";
+          isValid = false;
+        } else {
+          passwordError.textContent = "";
+        }
+
+        if (!isValidEmail(emailInput.value)) {
+          emailError.textContent = "Invalid email address";
+          isValid = false;
+        } else {
+          emailError.textContent = "";
+        }
+
+        if (isBlank(firstNameInput.value)) {
+          firstNameInput.setCustomValidity("First name is required");
+          isValid = false;
+        } else {
+          firstNameInput.setCustomValidity("");
+        }
+
+        if (isBlank(lastNameInput.value)) {
+          lastNameInput.setCustomValidity("Last name is required");
+          isValid = false;
+        } else {
+          lastNameInput.setCustomValidity("");
+        }
+
+        if (isBlank(dobInput.value)) {
+          dobInput.setCustomValidity("Date of birth is required");
+          isValid = false;
+        } else {
+          dobInput.setCustomValidity("");
+        }
+
+        if (!isValid) {
+          event.preventDefault();
+        }
+      });
+
+      function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      }
+
+      function isBlank(value) {
+        return !value.trim();
+      }
+    </script>
+  </body>
 </html>
