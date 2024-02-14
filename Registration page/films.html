@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Film</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(rgb(223, 232, 236), rgba(129, 207, 229, 0.585));
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+      }
+
+      h1 {
+            margin-bottom: 20px;
+            margin-top: 20px; 
+            margin-left: 20px; 
+        }
+
+        #filterInput {
+            width: 200px; 
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-left: 20px; 
+        }
+        
+
+      .film-card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+        padding: 20px;
+        width: 300px;
+        cursor: pointer; 
+        transition: transform 0.3s ease;
+      }
+
+      .film-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .film-card h2 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 20px;
+      }
+
+      .film-card p {
+        margin: 10px 0;
+      }
+
+      .film-card p strong {
+        font-weight: bold;
+      }
+
+      #filterInput {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Film</h1>
+    <button class = "header-links"><a href="index.html">Home</a></button>
+    <input
+      type="text"
+      id="filterInput"
+      placeholder="Filter by language (English/Tamil)"
+      oninput="filterFilms()"
+    />
+
+    <div
+      class="film-card"
+      data-language="english"
+      onclick="openIMDb('The Shawshank Redemption')"
+    >
+      <h2>The Shawshank Redemption</h2>
+      <p><strong>Director:</strong> Frank Darabont</p>
+      <p><strong>Release Date:</strong> 1994</p>
+      <p><strong>Genre:</strong> Drama</p>
+    </div>
+
+    <div
+      class="film-card"
+      data-language="english"
+      onclick="openIMDb('The Godfather')"
+    >
+      <h2>The Godfather</h2>
+      <p><strong>Director:</strong> Francis Ford Coppola</p>
+      <p><strong>Release Date:</strong> 1972</p>
+      <p><strong>Genre:</strong> Crime, Drama</p>
+    </div>
+
+    <div
+      class="film-card"
+      data-language="english"
+      onclick="openIMDb('The Dark Knight')"
+    >
+      <h2>The Dark Knight</h2>
+      <p><strong>Director:</strong> Christopher Nolan</p>
+      <p><strong>Release Date:</strong> 2008</p>
+      <p><strong>Genre:</strong> Action, Crime, Drama</p>
+    </div>
+
+    <div
+      class="film-card"
+      data-language="english"
+      onclick="openIMDb('Pulp Fiction')"
+    >
+      <h2>Pulp Fiction</h2>
+      <p><strong>Director:</strong> Quentin Tarantino</p>
+      <p><strong>Release Date:</strong> 1994</p>
+      <p><strong>Genre:</strong> Crime, Drama</p>
+    </div>
+
+    <div
+      class="film-card"
+      data-language="english"
+      onclick="openIMDb('Forrest Gump')"
+    >
+      <h2>Forrest Gump</h2>
+      <p><strong>Director:</strong> Robert Zemeckis</p>
+      <p><strong>Release Date:</strong> 1994</p>
+      <p><strong>Genre:</strong> Drama, Romance</p>
+    </div>
+
+    <div
+      class="film-card"
+      data-language="english"
+      onclick="openIMDb('Inception')"
+    >
+      <h2>Inception</h2>
+      <p><strong>Director:</strong> Christopher Nolan</p>
+      <p><strong>Release Date:</strong> 2010</p>
+      <p><strong>Genre:</strong> Action, Adventure, Sci-Fi</p>
+    </div>
+
+    <div class="film-card" data-language="tamil" onclick="openIMDb('Nayakan')">
+      <h2>Nayakan</h2>
+      <p><strong>Director:</strong> Mani Ratnam</p>
+      <p><strong>Release Date:</strong> 1987</p>
+      <p><strong>Genre:</strong> Crime, Drama</p>
+    </div>
+
+    <div
+      class="film-card"
+      data-language="tamil"
+      onclick="openIMDb('Vada Chennai')"
+    >
+      <h2>Vada Chennai</h2>
+      <p><strong>Director:</strong> Vetrimaaran</p>
+      <p><strong>Release Date:</strong> 2018</p>
+      <p><strong>Genre:</strong> Action, Crime, Drama</p>
+    </div>
+
+    <div class="film-card" data-language="tamil" onclick="openIMDb('Three')">
+      <h2>Three</h2>
+      <p><strong>Director:</strong> Aishwarya R. Dhanush</p>
+      <p><strong>Release Date:</strong> 2012</p>
+      <p><strong>Genre:</strong> Romance, Thriller</p>
+    </div>
+
+    <div
+      class="film-card"
+      data-language="tamil"
+      onclick="openIMDb('Subramaniapuram')"
+    >
+      <h2>Subramaniapuram</h2>
+      <p><strong>Director:</strong> M. Sasikumar</p>
+      <p><strong>Release Date:</strong> 2008</p>
+      <p><strong>Genre:</strong> Crime, Mystery, Thriller</p>
+    </div>
+
+    <script>
+      // Define film objects
+      var films = [
+        {
+          title: "The Shawshank Redemption",
+          imdbUrl: "https://www.imdb.com/title/tt0111161/",
+          language: "english",
+        },
+        {
+          title: "The Godfather",
+          imdbUrl: "https://www.imdb.com/title/tt0068646/",
+          language: "english",
+        },
+        {
+          title: "The Dark Knight",
+          imdbUrl: "https://www.imdb.com/title/tt0468569/",
+          language: "english",
+        },
+        {
+          title: "Pulp Fiction",
+          imdbUrl: "https://www.imdb.com/title/tt0110912/",
+          language: "english",
+        },
+        {
+          title: "Forrest Gump",
+          imdbUrl: "https://www.imdb.com/title/tt0109830/",
+          language: "english",
+        },
+        {
+          title: "Inception",
+          imdbUrl: "https://www.imdb.com/title/tt1375666/",
+          language: "english",
+        },
+        {
+          title: "Nayakan",
+          imdbUrl: "https://www.imdb.com/title/tt0093603/",
+          language: "tamil",
+        },
+        {
+          title: "Vada Chennai",
+          imdbUrl: "https://www.imdb.com/title/tt5959980/",
+          language: "tamil",
+        },
+        {
+          title: "Three",
+          imdbUrl: "https://www.imdb.com/title/tt2123129/",
+          language: "tamil",
+        },
+        {
+          title: "Subramaniapuram",
+          imdbUrl: "https://www.imdb.com/title/tt2152896/",
+          language: "tamil",
+        },
+      ];
+
+      // Function to open IMDb page for a film
+      function openIMDb(title) {
+        // Find the corresponding film object
+        var film = films.find((film) => film.title === title);
+        // Open IMDb page in a new tab/window
+        if (film) {
+          window.open(film.imdbUrl, "_blank");
+        }
+      }
+
+      // Function to filter films based on language
+      function filterFilms() {
+        var input = document.getElementById("filterInput").value.toLowerCase();
+        var filmCards = document.querySelectorAll(".film-card");
+        filmCards.forEach(function (card) {
+          var language = card.getAttribute("data-language");
+          if (language.toLowerCase() === input || input === "") {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -3,109 +3,110 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login Page</title>
+    <title>icinema</title>
     <style>
       body {
-        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-        background-color: #f2f2f2;
+        background: linear-gradient(rgb(223, 232, 236), rgba(129, 207, 229, 0.585));
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        font-family: Arial, sans-serif;
+      }
+
+
+      .container {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        justify-content: center;
-        height: 100vh;
-        margin: 0;
-      }
-
-      .login-container {
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        width: 320px;
-        text-align: center;
-      }
-
-      h1 {
-        color: teal;
-        margin-top: 20px;
-      }
-
-      hr {
-        border: none;
-        border-top: 2px solid teal;
-        margin: 30px 0;
-      }
-
-      form {
         padding: 20px;
+        margin-top: -20px;
+        margin-bottom: 0;
       }
 
-      label {
-        display: block;
-        margin-bottom: 8px;
-        color: teal;
+      .logo {
+        margin-top: 0;
+        margin-bottom: 0;
       }
 
-      input {
-        width: calc(100% - 20px);
-        padding: 10px;
-        box-sizing: border-box;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        margin-bottom: 12px;
-        transition: border-color 0.3s;
+      .header-links {
+        margin-top: 0;
+        margin-bottom: 0;
       }
 
-      input:focus {
-        border-color: #6c5ce7;
-        outline: none;
-      }
-
-      a {
-        text-decoration: none;
-        color: #6c5ce7;
-        transition: color 0.3s;
-      }
-
-      a:hover {
-        color: #4a3aa9;
-      }
-
-      input[type="button"] {
-        background-color: #6c5ce7;
-        color: #fff;
-        padding: 10px 15px;
+      .header-links button {
+        padding: 10px 20px;
         border: none;
-        border-radius: 4px;
+        background-color: transparent;
         cursor: pointer;
-        transition: background-color 0.3s;
+        font-size: 16px;
+        margin: 0 10px;
+        color: #333;
+        transition: background-color 0.3s ease;
       }
 
-      input[type="button"]:hover {
-        background-color: #4a3aa9;
+      .header-links button:hover {
+        background-color: #ddd;
       }
 
-      p {
+      .quote {
+        text-align: center;
+        margin-top: 80px;
+        margin-bottom: 50px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 28px;
+        padding-top: 10px;
+        padding-bottom: 20px;
+      }
+
+      .latest-releases {
         margin-top: 20px;
-        color: teal;
+        margin-left: 20px;
+      }
+
+      .image-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        justify-content: flex-start;
+        padding: 0 20px;
+      }
+
+      .image-gallery img {
+        margin-right: 10px;
+        margin-bottom: 10px;
+        max-width: 200px;
+        height: auto;
       }
     </style>
   </head>
   <body>
-    <div class="login-container">
-      <h1>Sign in to continue</h1>
-      <hr />
-      <form action="">
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" required /><br />
-        <label for="pwd">Password:</label>
-        <input type="password" name="pwd" id="pwd" required /><br />
-        <a href="Forgotpassword.html">Forgot your password?</a><br />
-        <br /><input type="button" value="Sign In" /><br />
-        <p>New user?</p>
-        <a href="registration.html"
-          ><input type="button" value="Create Account"
-        /></a>
-      </form>
+    <div class="container">
+      <div class="logo">
+        <h1><b>Icinema</b></h1>
+      </div>
+      <div class="header-links">
+        <a href="LoginPage.html"><button><b>Sign In</b></button></a>
+        <a href="registration.html"><button><b>Sign Up</b></button></a>
+        <a href="films.html"><button><b>Top Rated Films</b></button></a>
+      </div>
     </div>
+    <p class="quote">Cinema is a mirror by which we often see ourselves</p>
+    <section id ="s1">
+    <div class="latest-releases">
+      <h2>Latest releases</h2>
+      <div class="image-gallery">
+        <img
+          src="/images/Dhruva-Natchathiram_1675785104.jpg"
+          alt="Dhruva-Natchathiram-poster"
+        />
+        <img src="/images/Dune-2-Poster-4x5-1.jpg" alt="Dune-2-Poster" />
+        <img src="/images/jokerweb.jpg" alt="Joker-folie-a-deux-poster" />
+        <img
+          src="/images/Mammoottys-Bramayugam-Revealed-First-Look-Poster-1.webp"
+          alt="Mammoottys-Bramayugam-Poster"
+        />
+      </div>
+    </div>
+  </section>
   </body>
 </html>
