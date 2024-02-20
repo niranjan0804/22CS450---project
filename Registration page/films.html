@@ -7,46 +7,50 @@
     <style>
       body {
         font-family: Arial, sans-serif;
-        background: linear-gradient(rgb(223, 232, 236), rgba(129, 207, 229, 0.585));
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-        font-family: Arial, sans-serif;
+        background: linear-gradient(rgb(156, 222, 250), rgb(206, 229, 239));
         margin: 0;
         padding: 0;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: flex-start;
-        min-height: 100vh;
+        background-repeat: no-repeat;
+        background-size: auto;
       }
 
       h1 {
-            margin-bottom: 20px;
-            margin-top: 20px; 
-            margin-left: 20px; 
-        }
+        margin-bottom: 20px;
+        margin-top: 20px;
+        margin-left: 20px;
+      }
 
-        #filterInput {
-            width: 200px; 
-            padding: 10px;
-            box-sizing: border-box;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            margin-left: 20px; 
-        }
-        
+      #home {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+      }
+
+      #filterInput {
+        width: 200px;
+        padding: 10px;
+        box-sizing: border-box;
+        margin: 20px auto;
+        border-radius: 5px;
+        border: 1px solid #bde4ef;
+        display: block;
+      }
+
+      .film-card-container {
+        margin: 20px;
+        padding: 20px;
+      }
 
       .film-card {
         background-color: #fff;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin: 20px;
+        margin-bottom: 20px;
         padding: 20px;
         width: 300px;
-        cursor: pointer; 
+        cursor: pointer;
         transition: transform 0.3s ease;
+        display: inline-block;
       }
 
       .film-card:hover {
@@ -66,20 +70,11 @@
       .film-card p strong {
         font-weight: bold;
       }
-
-      #filterInput {
-        width: 100%;
-        padding: 10px;
-        box-sizing: border-box;
-        margin-bottom: 20px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-      }
     </style>
   </head>
   <body>
     <h1>Film</h1>
-    <button class = "header-links"><a href="index.html">Home</a></button>
+    <a href="index.html" id="home"><button>Home</button></a>
     <input
       type="text"
       id="filterInput"
@@ -87,110 +82,54 @@
       oninput="filterFilms()"
     />
 
-    <div
-      class="film-card"
-      data-language="english"
-      onclick="openIMDb('The Shawshank Redemption')"
-    >
-      <h2>The Shawshank Redemption</h2>
-      <p><strong>Director:</strong> Frank Darabont</p>
-      <p><strong>Release Date:</strong> 1994</p>
-      <p><strong>Genre:</strong> Drama</p>
-    </div>
+    <div class="film-card-container">
+      <div
+        class="film-card"
+        data-language="english"
+        onclick="openIMDb('The Shawshank Redemption')"
+        onmouseover="highlight(this)"
+        onmouseout="removeHighlight(this)"
+        ondblclick="alertMessage('The Shawshank Redemption')"
+        oncontextmenu="rightClickEvent(event)"
+        onmousedown="mouseDownEvent()"
+        onmouseup="mouseUpEvent()"
+      >
+        <h2>The Shawshank Redemption</h2>
+        <p><strong>Director:</strong> Frank Darabont</p>
+        <p><strong>Release Date:</strong> 1994</p>
+        <p><strong>Genre:</strong> Drama</p>
+      </div>
 
-    <div
-      class="film-card"
-      data-language="english"
-      onclick="openIMDb('The Godfather')"
-    >
-      <h2>The Godfather</h2>
-      <p><strong>Director:</strong> Francis Ford Coppola</p>
-      <p><strong>Release Date:</strong> 1972</p>
-      <p><strong>Genre:</strong> Crime, Drama</p>
-    </div>
+      <div class="film-card" data-language="english">
+        <h2>Pulp Fiction</h2>
+        <p><strong>Director:</strong> Quentin Tarantino</p>
+        <p><strong>Release Date:</strong> 1994</p>
+        <p><strong>Genre:</strong> Crime, Drama</p>
+      </div>
 
-    <div
-      class="film-card"
-      data-language="english"
-      onclick="openIMDb('The Dark Knight')"
-    >
-      <h2>The Dark Knight</h2>
-      <p><strong>Director:</strong> Christopher Nolan</p>
-      <p><strong>Release Date:</strong> 2008</p>
-      <p><strong>Genre:</strong> Action, Crime, Drama</p>
-    </div>
+      <div class="film-card" data-language="english">
+        <h2>Inception</h2>
+        <p><strong>Director:</strong> Christopher Nolan</p>
+        <p><strong>Release Date:</strong> 2010</p>
+        <p><strong>Genre:</strong> Action, Adventure, Sci-Fi</p>
+      </div>
 
-    <div
-      class="film-card"
-      data-language="english"
-      onclick="openIMDb('Pulp Fiction')"
-    >
-      <h2>Pulp Fiction</h2>
-      <p><strong>Director:</strong> Quentin Tarantino</p>
-      <p><strong>Release Date:</strong> 1994</p>
-      <p><strong>Genre:</strong> Crime, Drama</p>
-    </div>
+      <div class="film-card" data-language="tamil">
+        <h2>Nayakan</h2>
+        <p><strong>Director:</strong> Mani Ratnam</p>
+        <p><strong>Release Date:</strong> 1987</p>
+        <p><strong>Genre:</strong> Crime, Drama</p>
+      </div>
 
-    <div
-      class="film-card"
-      data-language="english"
-      onclick="openIMDb('Forrest Gump')"
-    >
-      <h2>Forrest Gump</h2>
-      <p><strong>Director:</strong> Robert Zemeckis</p>
-      <p><strong>Release Date:</strong> 1994</p>
-      <p><strong>Genre:</strong> Drama, Romance</p>
-    </div>
-
-    <div
-      class="film-card"
-      data-language="english"
-      onclick="openIMDb('Inception')"
-    >
-      <h2>Inception</h2>
-      <p><strong>Director:</strong> Christopher Nolan</p>
-      <p><strong>Release Date:</strong> 2010</p>
-      <p><strong>Genre:</strong> Action, Adventure, Sci-Fi</p>
-    </div>
-
-    <div class="film-card" data-language="tamil" onclick="openIMDb('Nayakan')">
-      <h2>Nayakan</h2>
-      <p><strong>Director:</strong> Mani Ratnam</p>
-      <p><strong>Release Date:</strong> 1987</p>
-      <p><strong>Genre:</strong> Crime, Drama</p>
-    </div>
-
-    <div
-      class="film-card"
-      data-language="tamil"
-      onclick="openIMDb('Vada Chennai')"
-    >
-      <h2>Vada Chennai</h2>
-      <p><strong>Director:</strong> Vetrimaaran</p>
-      <p><strong>Release Date:</strong> 2018</p>
-      <p><strong>Genre:</strong> Action, Crime, Drama</p>
-    </div>
-
-    <div class="film-card" data-language="tamil" onclick="openIMDb('Three')">
-      <h2>Three</h2>
-      <p><strong>Director:</strong> Aishwarya R. Dhanush</p>
-      <p><strong>Release Date:</strong> 2012</p>
-      <p><strong>Genre:</strong> Romance, Thriller</p>
-    </div>
-
-    <div
-      class="film-card"
-      data-language="tamil"
-      onclick="openIMDb('Subramaniapuram')"
-    >
-      <h2>Subramaniapuram</h2>
-      <p><strong>Director:</strong> M. Sasikumar</p>
-      <p><strong>Release Date:</strong> 2008</p>
-      <p><strong>Genre:</strong> Crime, Mystery, Thriller</p>
+      <div class="film-card" data-language="tamil">
+        <h2>Vada Chennai</h2>
+        <p><strong>Director:</strong> Vetrimaaran</p>
+        <p><strong>Release Date:</strong> 2018</p>
+        <p><strong>Genre:</strong> Action, Crime, Drama</p>
+      </div>
     </div>
 
     <script>
-      // Define film objects
       var films = [
         {
           title: "The Shawshank Redemption",
@@ -198,23 +137,8 @@
           language: "english",
         },
         {
-          title: "The Godfather",
-          imdbUrl: "https://www.imdb.com/title/tt0068646/",
-          language: "english",
-        },
-        {
-          title: "The Dark Knight",
-          imdbUrl: "https://www.imdb.com/title/tt0468569/",
-          language: "english",
-        },
-        {
           title: "Pulp Fiction",
           imdbUrl: "https://www.imdb.com/title/tt0110912/",
-          language: "english",
-        },
-        {
-          title: "Forrest Gump",
-          imdbUrl: "https://www.imdb.com/title/tt0109830/",
           language: "english",
         },
         {
@@ -232,40 +156,51 @@
           imdbUrl: "https://www.imdb.com/title/tt5959980/",
           language: "tamil",
         },
-        {
-          title: "Three",
-          imdbUrl: "https://www.imdb.com/title/tt2123129/",
-          language: "tamil",
-        },
-        {
-          title: "Subramaniapuram",
-          imdbUrl: "https://www.imdb.com/title/tt2152896/",
-          language: "tamil",
-        },
       ];
 
-      // Function to open IMDb page for a film
       function openIMDb(title) {
-        // Find the corresponding film object
         var film = films.find((film) => film.title === title);
-        // Open IMDb page in a new tab/window
         if (film) {
           window.open(film.imdbUrl, "_blank");
         }
       }
 
-      // Function to filter films based on language
       function filterFilms() {
         var input = document.getElementById("filterInput").value.toLowerCase();
         var filmCards = document.querySelectorAll(".film-card");
         filmCards.forEach(function (card) {
           var language = card.getAttribute("data-language");
           if (language.toLowerCase() === input || input === "") {
-            card.style.display = "block";
+            card.style.display = "inline-block";
           } else {
             card.style.display = "none";
           }
         });
+      }
+
+      function highlight(element) {
+        element.style.backgroundColor = "lightgray";
+      }
+
+      function removeHighlight(element) {
+        element.style.backgroundColor = "#fff";
+      }
+
+      function alertMessage(title) {
+        alert("You double-clicked on " + title);
+      }
+
+      function rightClickEvent(event) {
+        event.preventDefault();
+        alert("Right-click event occurred");
+      }
+
+      function mouseDownEvent() {
+        console.log("Mouse down event occurred");
+      }
+
+      function mouseUpEvent() {
+        console.log("Mouse up event occurred");
       }
     </script>
   </body>
