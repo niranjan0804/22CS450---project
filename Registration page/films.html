@@ -10,47 +10,62 @@
         background: linear-gradient(rgb(156, 222, 250), rgb(206, 229, 239));
         margin: 0;
         padding: 0;
-        background-repeat: no-repeat;
-        background-size: auto;
       }
 
       h1 {
-        margin-bottom: 20px;
-        margin-top: 20px;
-        margin-left: 20px;
+        margin: 20px;
       }
 
       #home {
         position: absolute;
         top: 20px;
         right: 20px;
+        text-decoration: none;
       }
 
-      #filterInput {
-        width: 200px;
+      #home button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      #home button:hover {
+        background-color: #0056b3;
+      }
+
+      #filterForm {
+        margin: 20px;
+        text-align: center;
+      }
+
+      #filterForm input {
+        margin: 5px;
         padding: 10px;
-        box-sizing: border-box;
-        margin: 20px auto;
+        width: 200px;
         border-radius: 5px;
         border: 1px solid #bde4ef;
-        display: block;
       }
 
       .film-card-container {
         margin: 20px;
-        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
       }
 
       .film-card {
         background-color: #fff;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
+        margin: 10px;
         padding: 20px;
         width: 300px;
         cursor: pointer;
         transition: transform 0.3s ease;
-        display: inline-block;
       }
 
       .film-card:hover {
@@ -58,42 +73,34 @@
       }
 
       .film-card h2 {
-        margin-top: 0;
-        margin-bottom: 10px;
-        font-size: 20px;
+        margin: 0;
+        font-size: 24px;
+        color: #333;
       }
 
       .film-card p {
-        margin: 10px 0;
+        margin: 5px 0;
+        color: #666;
       }
 
       .film-card p strong {
         font-weight: bold;
+        color: #000;
       }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
     <h1>Film</h1>
     <a href="index.html" id="home"><button>Home</button></a>
-    <input
-      type="text"
-      id="filterInput"
-      placeholder="Filter by language (English/Tamil)"
-      oninput="filterFilms()"
-    />
-
+    <form id="filterForm">
+      <input type="text" id="languageInput" placeholder="Filter by language" />
+      <input type="text" id="decadeInput" placeholder="Filter by year" />
+      <input type="text" id="genreInput" placeholder="Filter by genre" />
+      <input type="text" id="directorInput" placeholder="Filter by director" />
+    </form>
     <div class="film-card-container">
-      <div
-        class="film-card"
-        data-language="english"
-        onclick="openIMDb('The Shawshank Redemption')"
-        onmouseover="highlight(this)"
-        onmouseout="removeHighlight(this)"
-        ondblclick="alertMessage('The Shawshank Redemption')"
-        oncontextmenu="rightClickEvent(event)"
-        onmousedown="mouseDownEvent()"
-        onmouseup="mouseUpEvent()"
-      >
+      <div class="film-card" data-language="english">
         <h2>The Shawshank Redemption</h2>
         <p><strong>Director:</strong> Frank Darabont</p>
         <p><strong>Release Date:</strong> 1994</p>
@@ -128,8 +135,21 @@
         <p><strong>Genre:</strong> Action, Crime, Drama</p>
       </div>
     </div>
-
     <script>
+      const filmCards = document.querySelectorAll(".film-card");
+
+      function setAttributes(card, filmName) {
+        card.setAttribute("onclick", `openIMDb('${filmName}')`);
+        card.setAttribute("onmouseover", "highlight(this)");
+        card.setAttribute("onmouseout", "removeHighlight(this)");
+        card.setAttribute("oncontextmenu", "rightClickEvent(event)");
+      }
+
+      filmCards.forEach((card) => {
+        const filmName = card.querySelector("h2").textContent;
+        setAttributes(card, filmName);
+      });
+
       var films = [
         {
           title: "The Shawshank Redemption",
@@ -165,19 +185,6 @@
         }
       }
 
-      function filterFilms() {
-        var input = document.getElementById("filterInput").value.toLowerCase();
-        var filmCards = document.querySelectorAll(".film-card");
-        filmCards.forEach(function (card) {
-          var language = card.getAttribute("data-language");
-          if (language.toLowerCase() === input || input === "") {
-            card.style.display = "inline-block";
-          } else {
-            card.style.display = "none";
-          }
-        });
-      }
-
       function highlight(element) {
         element.style.backgroundColor = "lightgray";
       }
@@ -186,21 +193,41 @@
         element.style.backgroundColor = "#fff";
       }
 
-      function alertMessage(title) {
-        alert("You double-clicked on " + title);
-      }
+      $(document).ready(function () {
+        $("#languageInput, #decadeInput, #genreInput, #directorInput").on(
+          "input",
+          function () {
+            filterFilms();
+          }
+        );
+      });
 
-      function rightClickEvent(event) {
-        event.preventDefault();
-        alert("Right-click event occurred");
-      }
+      function filterFilms() {
+        var language = $("#languageInput").val().toLowerCase();
+        var decade = $("#decadeInput").val().toLowerCase();
+        var genre = $("#genreInput").val().toLowerCase();
+        var director = $("#directorInput").val().toLowerCase();
 
-      function mouseDownEvent() {
-        console.log("Mouse down event occurred");
-      }
+        $(".film-card").each(function () {
+          var cardLanguage = $(this).data("language").toLowerCase();
+          var cardDecade = $(this).find("p:nth-child(3)").text().toLowerCase();
+          var cardGenre = $(this).find("p:nth-child(4)").text().toLowerCase();
+          var cardDirector = $(this)
+            .find("p:nth-child(2)")
+            .text()
+            .toLowerCase();
 
-      function mouseUpEvent() {
-        console.log("Mouse up event occurred");
+          if (
+            (cardLanguage.includes(language) || language === "") &&
+            (cardDecade.includes(decade) || decade === "") &&
+            (cardGenre.includes(genre) || genre === "") &&
+            (cardDirector.includes(director) || director === "")
+          ) {
+            $(this).show();
+          } else {
+            $(this).hide();
+          }
+        });
       }
     </script>
   </body>
